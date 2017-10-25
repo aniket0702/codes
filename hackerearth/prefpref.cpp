@@ -24,29 +24,37 @@ void create_array(string  s)
 }
 int pattern_search(string s,string p)
 {
+    int m=-1;
+    int c = 0;
   create_array(p);
   int i=0,j=0;
   while(i<s.length())
   {
+      cout<<c<<endl;
+      if(c>m)
+        m = c;
     if(s[i] == p[j])
     {
+        // print
       i++;j++;
+      c++;
     }
     else{
+        c=0;
       if(arr[j-1]!=0)
       j = arr[j-1];
       else
       i++;
     }
-    if(j == p.length())
-    return i-j;
+
   }
-  return -1;
+  return m;
 }
 int main()
 {
-  string s = "bfsjaniket";
-  string p = "ani";
+  string s ;
+  string p ;
+  cin>>p>>s;
   int a = pattern_search(s,p);
   cout<<a<<endl;
 }

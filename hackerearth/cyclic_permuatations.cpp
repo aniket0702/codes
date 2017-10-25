@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
-int arr[100000];
-void create_array(string  s)
+
+void create_array(string  s,int arr[])
 {
   int i=1;int j=0;
   arr[0] = 0;
@@ -24,8 +24,12 @@ void create_array(string  s)
 }
 int pattern_search(string s,string p)
 {
-  create_array(p);
+  int arr[100005];
+  create_array(p,arr);
+  // for(int i=0;i<p.length();i++)
+  //   cout<<arr[i]<<endl;
   int i=0,j=0;
+  int c = 0;
   while(i<s.length())
   {
     if(s[i] == p[j])
@@ -39,14 +43,28 @@ int pattern_search(string s,string p)
       i++;
     }
     if(j == p.length())
-    return i-j;
+      {c++;i++;j = 0;}
   }
-  return -1;
+  return c;
 }
 int main()
 {
-  string s = "bfsjaniket";
-  string p = "ani";
-  int a = pattern_search(s,p);
-  cout<<a<<endl;
+  int n;
+  cin>>n;
+  while(n--)
+  {
+  string s ;
+  string p ;
+  cin>>p;
+  cin>>s;
+  string z;
+  z = s+s;
+  // cout<<z<<endl<<p;
+  int a = pattern_search(z,p);
+  // cout<<a<<endl;
+  if(s == p)
+    printf("%d\n",a-1 );
+  else
+    printf("%d\n",a );
+  }
 }
